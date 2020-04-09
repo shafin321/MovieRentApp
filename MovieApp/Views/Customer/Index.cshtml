@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MovieApp.Models.Customer>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="form-group">
+    <a asp-action="Create" asp-controller="Customer"  >Create Customer</a>
+
+</div>
+
+
+<br>
+<table class="table table-bordered table-hover ">
+
+    <tr>
+
+        <td>
+            Name
+        </td>
+        <td>
+            MemberShip Type
+        </td>
+        <td>
+            IsSubscribe?
+        </td>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Name
+            </td>
+
+             <td>@item.MembershipType.Name</td>
+
+            <td>@item.IsSubscribedToNewsletter</td>
+
+            <td>
+                <a asp-action="Delete" class="btn btn-warning" asp-route-id="@item.Id">
+                    <i class="fa fa-pencil" aria-hidden="true">Delete</i>
+                </a>
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">
+                    <i class="fa fa-info-circle" aria-hidden="true">Detail</i>
+                </a>
+            </td>
+
+
+            
+        </tr>
+        
+    }
+
+</table>
+
+

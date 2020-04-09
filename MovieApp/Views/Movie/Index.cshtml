@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MovieApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Index</h1>
+
+<div id="movies" class="form-group">
+    <a asp-action="Create"  asp-controller="Movie">Create</a>
+</div>
+<table class="table table-bordered table-hover " >
+
+    <tr>
+        <td>Namme</td>
+        <td>Genre</td>
+        <td>Delete</td>
+
+    </tr>
+
+
+    @foreach(var item in Model)
+    {
+
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Genre.Name</td>
+            <td>
+                <button data-movie-id="@item.Id"  class="btn-link js-delete" >Delete</button>
+            </td>
+        </tr>
+
+    }
+</table>
+
+@section scripts
+{
+<script>
+    $(document).ready(function (){
+
+        $("#movies .js-delete").on("click", function () {
+
+            var button = $(this);
+            if (Comfirm("are you want to delete ?")) {
+
+                $.ajax({
+                    url: "/api/movies/" + this.attr("data-movie-id"),
+                    method: "DELETE",
+                    success: function () {
+
+                        button.parents("tr").remove();
+
+                    }
+                })
+            }
+
+        });
+
+        });
+    
+    
+</script>
+
+}

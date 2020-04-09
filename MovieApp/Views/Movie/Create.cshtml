@@ -1,0 +1,35 @@
+﻿@model MovieApp.ViewModels.CreateMovieModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form method="post" asp-action="Create" asp-controller="Movie">
+
+    <div class="form-group">
+        <div class="col-5">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-5">
+
+            <label>Genre</label>
+            <select asp-for="GenreId" asp-items="@Model.GenreList">
+                <option>Please select one</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-4">
+            <button type="submit" class=" btn btn-primary"> Submit</button>
+        </div>
+    </div>
+
+
+</form>
